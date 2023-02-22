@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <h1>The results: </h1><br>
+    <h3 th:text="${results}"></h3><br>
+    <p>Your guess was: <span th:text="${guess}">insert guess here</span></p><br>
+    <p>The Correct answer was: <span th:text="${correctNumber}">insert correct number here</span></p><br>
+</div>
+
+
+</body>
+</html>
