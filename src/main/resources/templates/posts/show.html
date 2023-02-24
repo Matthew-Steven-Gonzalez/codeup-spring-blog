@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials :: head ('Viewing individual Post')"></head>
+<body>
+<navbar th:replace="partials :: navbar"></navbar>
+<div class="container">
+    <h1 th:text="${post.title}"></h1>
+    <p th:text="${post.description}"></p>
+</div>
+<footer th:replace="partials :: footer"></footer>
+<div th:replace="partials :: foot-script"></div>
+</body>
+</html>

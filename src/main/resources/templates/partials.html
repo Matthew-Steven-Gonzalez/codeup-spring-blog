@@ -1,11 +1,48 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:fragments = "head (title)">
+
+<!--header-->
+<head th:fragment = "head (title)">
   <meta charset="UTF-8">
-  <title th:text="${title}"></title>
+  <title th:text="|Posters - ${title}|"></title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
   <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css">
 </head>
 <body>
 
+<!--NavBar-->
+<nav th:fragment="navbar" class="navbar navbar-expand-log nav-bg mb-2 nb">
+  <div class="container-fluid">
+    <a href="/" class="navbar-brand logo-font navbarlogo">Posters!</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="/roll-dice">Fate of the roll!!</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/posts">Show the posts</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!--footer-->
+<footer th:fragment="footer" class="footer-bg d-flex justify-content align-items-center mt-auto">
+  <p>This is where I would put foot links....IF I HAD ANY!!!!! DINKLEBURG!!!!!</p>
+</footer>
+
+<!--foot-script-->
+
+<div th:fragment="foot-script">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
+          integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD"
+          crossorigin="anonymous"></script>
+</div>
 </body>
 </html>

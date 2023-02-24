@@ -2,37 +2,36 @@ package com.codeup.codeupspringblog.models;
 
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
-
 @Entity
-@Table(name="ads")
-public class Ad {
-@Id
-@GeneratedValue(strategy = GenerationType.IDENTITY)
+@Table(name="Posts")
+public class Post {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
     @Column(length = 100, nullable = false)
     private String title;
 
     @Column(length = 100, nullable = false)
     private String description;
 
-    @Column(nullable = false)
-    private int userId;
+    public Post(){}
 
-    public Ad(){}
-    public Ad(Long id, String title, String description, int userId) {
+    public Post(String title, String description) {
+        this.title = title;
+        this.description = description;
+    }
+
+    public Post(long id,String title, String description) {
         this.id = id;
         this.title = title;
         this.description = description;
-        this.userId = userId;
     }
 
-    public Ad( String title, String description, int userId ){
-        this.title = title;
-        this.description = description;
-        this.userId = userId;
+    public long getId() {
+        return id;
     }
-
 
     public String getTitle() {
         return title;
@@ -49,14 +48,4 @@ public class Ad {
     public void setDescription(String description) {
         this.description = description;
     }
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
-
 }

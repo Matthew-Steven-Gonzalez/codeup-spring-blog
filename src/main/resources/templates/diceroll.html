@@ -1,21 +1,29 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Lets Roll</title>
+<head th:replace="partials :: head ('Rolling dice')">
 </head>
 <body>
-<form action="/roll-dice" method="post">
-    <label for="guess">What is your guess(six-sided die)?</label>
-    <select name="guess" id="guess">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <option value="6">6</option>
-    </select>
-    <input type="submit">
-</form>
+<navbar th:replace="partials :: navbar"></navbar>
+
+<h1>Pick a number!</h1>
+<a href="/roll-dice/1">1</a>
+<a href="/roll-dice/2">2</a>
+<a href="/roll-dice/3">3</a>
+<a href="/roll-dice/4">4</a>
+<a href="/roll-dice/5">5</a>
+<a href="/roll-dice/6">6</a>
+
+<!--<form action="/roll-dice" method="post">-->
+<!--    <label for="guess">What is your guess(six-sided die)?</label>-->
+<!--    <select name="guess" id="guess">-->
+<!--        <option value="1">1</option>-->
+<!--        <option value="2">2</option>-->
+<!--        <option value="3">3</option>-->
+<!--        <option value="4">4</option>-->
+<!--        <option value="5">5</option>-->
+<!--        <option value="6">6</option>-->
+<!--    </select>-->
+<!--    <input type="submit">-->
+<!--</form>-->
 </body>
 </html>
