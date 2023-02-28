@@ -6,6 +6,7 @@
 <div class="container">
     <h1 th:text="${post.title}"></h1>
     <p th:text="${post.description}"></p>
+    <p th:text="${post.user.getEmail()}"></p>
     <a class="btn" th:href="@{/posts/delete/{id} (id = ${post.id})}">Delete</a>
 </div>
 <footer th:replace="partials :: footer"></footer>

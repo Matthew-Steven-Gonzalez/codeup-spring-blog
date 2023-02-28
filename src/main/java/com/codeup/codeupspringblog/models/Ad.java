@@ -16,21 +16,22 @@ public class Ad {
     @Column(length = 100, nullable = false)
     private String description;
 
-    @Column(nullable = false)
-    private int userId;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     public Ad(){}
-    public Ad(Long id, String title, String description, int userId) {
+    public Ad(Long id, String title, String description, int userId, User user) {
         this.id = id;
         this.title = title;
         this.description = description;
-        this.userId = userId;
+        this.user = user;
     }
 
-    public Ad( String title, String description, int userId ){
+    public Ad( String title, String description, int userId, User user ){
         this.title = title;
         this.description = description;
-        this.userId = userId;
+        this.user = user;
     }
 
 
@@ -50,13 +51,10 @@ public class Ad {
         this.description = description;
     }
 
-    public int getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
 
 
 }
