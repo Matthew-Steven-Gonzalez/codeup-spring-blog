@@ -4,6 +4,7 @@ import com.codeup.codeupspringblog.models.Post;
 import com.codeup.codeupspringblog.models.User;
 import com.codeup.codeupspringblog.repositories.PostRepository;
 import com.codeup.codeupspringblog.repositories.UserRepository;
+import com.codeup.codeupspringblog.services.EmailService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -15,9 +16,12 @@ public class PostController {
 
     private final UserRepository userDao;
 
-    public PostController(PostRepository postDao, UserRepository userDao){
+    private final EmailService emailService;
+
+    public PostController(PostRepository postDao, UserRepository userDao, EmailService emailService) {
         this.postDao = postDao;
         this.userDao = userDao;
+        this.emailService = emailService;
     }
 
     @GetMapping("/posts")
@@ -27,22 +31,30 @@ public class PostController {
     }
 
     @GetMapping("/posts/{id}")
-    public String postsHome(@PathVariable long id ,Model model){
+    public String postsIndividual(@PathVariable long id , Model model){
         model.addAttribute("post", postDao.findPostById(id));
         return "posts/show";
     }
 
     @GetMapping("/posts/create")
-    public String postsForm(){
+    public String postsForm(Model model){
+        model.addAttribute("post",new Post());
         return "posts/create";
     }
 
-    @PostMapping("/posts/create")
-    public String createPost(@RequestParam(name = "title") String title, @RequestParam(name = "description") String description){
+    @PostMapping("/posts/save")
+    public String savePost(@ModelAttribute Post post){
         User user = userDao.findUserById(1);
-        Post post = new Post(title,description,user);
+        post.setUser(user);
         postDao.save(post);
+        emailService.prepareAndSendPost(post);
         return "redirect:/posts";
+    }
+
+    @GetMapping("/posts/{id}/edit")
+    public String editPost(Model model, @PathVariable long id){
+        model.addAttribute("post", postDao.findPostById(id));
+        return "posts/create";
     }
 
     @GetMapping("/posts/delete/{id}")
